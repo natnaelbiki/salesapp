@@ -1,6 +1,25 @@
-<h1>Add Sale</h1>
-   <form method="post">
-       {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Add Sale</button>
-   </form>
+<!-- templates/sales/sale_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add Sale</h1>
+  <form method="post" id="saleForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Sale</button>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#id_payment_method').change(function() {
+        if ($(this).val() === 'debit') {
+          $('#id_payment_date').show();  // Show payment_date field if payment_method is debit
+        } else {
+          $('#id_payment_date').hide();  // Hide payment_date field for other payment methods
+        }
+      }).change();  // Trigger change event initially
+    });
+  </script>
+{% endblock %}
