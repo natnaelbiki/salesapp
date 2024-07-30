@@ -1,0 +1,6 @@
+   <h1>Sales Records</h1>
+   <ul>
+   {% for sale in sales %}
+       <li>{{ sale.customer_name }} bought {{ sale.product_name }} on {{ sale.sale_date }}</li>
+   {% endfor %}
+   </ul>
